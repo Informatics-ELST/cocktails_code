@@ -2,7 +2,7 @@ import requests
 import json
 import webbrowser
 
-def userinput():
+def dashboard():
     print("Please specify how you would like search for a drink:")
     print("1 : Cocktail Name")
     print("2 : Ingredient Name")
@@ -10,6 +10,7 @@ def userinput():
 
     selected = input()
 
+    # Function selector (there's probably a better way of doing this)
     if(selected == "1"):
         cocktailname()
     if(selected == "2"):
@@ -26,8 +27,15 @@ def cocktailname():
     #webbrowser.open(tt["url"])
     
     for i in (tt["drinks"]):
-        print(i, "\n")
-    print(len(tt["drinks"])) 
+        print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
+
+        # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
+        print("Ingredients:     " + str(i["strIngredient1"]) + ", " + str(i["strIngredient2"]) + ", " + str(i["strIngredient3"]) + ", " + str(i["strIngredient4"]) + "\n")
+ 
+        # Instructions
+        print("Instructions:    " + str(i["strInstructions"]), "\n")
+        
+        
 
 
 def ingredientname():
@@ -39,9 +47,14 @@ def ingredientname():
     #webbrowser.open(tt["url"])
 
     for i in (tt["drinks"]):
-        print(i, "\n")
-    print(len(tt["drinks"]))
+        print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
+
+        # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
+        print("Ingredients:     " + str(i["strIngredient1"]) + ", " + str(i["strIngredient2"]) + ", " + str(i["strIngredient3"]) + ", " + str(i["strIngredient4"]) + "\n")
+
+        # Instructions
+        print("Instructions:    " + str(i["strInstructions"]), "\n")
 
 
-
-userinput()
+# Call dashboard / Main
+dashboard()
