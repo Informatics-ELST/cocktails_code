@@ -51,12 +51,15 @@ def ingredientname():
 
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
         print("Ingredients: ")
+        x=1
         # print("Ingredients:     " + str(i["strIngredient1"]) + ", " + str(i["strIngredient2"]) + ", " + str(i["strIngredient3"]) + ", " + str(i["strIngredient4"]) + "\n")
-        for x in i:
-            print(str(x))
+        print(str(i["strIngredient"+str(x)]))
+        while print(str(i["strIngredient"+str(x+1)])):
+            x=x+1
+            print(str(i["strIngredient"+str(x)]))
 
         # Instructions
-        print("Instructions:    " + str(i["strInstructions"]), "\n")
+        #print("Instructions:    " + str(i["strInstructions"]), "\n")
 
 
 # Call dashboard / Main
