@@ -50,7 +50,10 @@ def ingredientname():
         print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
 
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
-        print("Ingredients:     " + str(i["strIngredient1"]) + ", " + str(i["strIngredient2"]) + ", " + str(i["strIngredient3"]) + ", " + str(i["strIngredient4"]) + "\n")
+        print("Ingredients: ")
+        # print("Ingredients:     " + str(i["strIngredient1"]) + ", " + str(i["strIngredient2"]) + ", " + str(i["strIngredient3"]) + ", " + str(i["strIngredient4"]) + "\n")
+        for x in i:
+            print(str(x))
 
         # Instructions
         print("Instructions:    " + str(i["strInstructions"]), "\n")
