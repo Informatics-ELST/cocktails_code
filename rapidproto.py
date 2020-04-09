@@ -54,7 +54,7 @@ def ingredientname():
         x=1
         # print("Ingredients:     " + str(i["strIngredient1"]) + ", " + str(i["strIngredient2"]) + ", " + str(i["strIngredient3"]) + ", " + str(i["strIngredient4"]) + "\n")
         print(str(i["strIngredient"+str(x)]))
-        while print(str(i["strIngredient"+str(x+1)])):
+        while ((str(i["strIngredient"+str(x+1)])!=null)):
             x=x+1
             print(str(i["strIngredient"+str(x)]))
 
