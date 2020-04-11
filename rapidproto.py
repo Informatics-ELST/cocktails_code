@@ -1,6 +1,7 @@
 import requests
 import json
 import webbrowser
+from controlled_vocab import *
 
 def dashboard():
     print("Please specify how you would like search for a drink:")
@@ -41,6 +42,10 @@ def cocktailname():
 def ingredientname():
     print("Please enter ingredient: \n")
     UserInput = input()
+
+    #using controlled vocab (vodka only implemented)
+    UserInput = vodka_cv(UserInput)
+    
     f = r" https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+UserInput
     data = requests.get(f)
     tt = json.loads(data.text)

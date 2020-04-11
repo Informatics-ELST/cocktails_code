@@ -31,6 +31,6 @@ class QuotesSpider(scrapy.Spider):
     def parse(self, response):
         for vodka in response.css('tr td:nth-child(1)'):
             yield {
-                'vodka brand': vodka.css('a::text').get(),
+                'vodka_brand': vodka.css('a::text').get(),
 
             }
