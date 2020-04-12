@@ -4,6 +4,7 @@ import webbrowser
 from controlled_vocab import *
 
 def dashboard():
+
     print("Please specify how you would like search for a drink:")
     print("1 : Cocktail Name")
     print("2 : Ingredient Name")
@@ -53,7 +54,7 @@ def ingredientname():
 
     for i in (tt["drinks"]):
         print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
-
+        
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
 
         # Instructions
