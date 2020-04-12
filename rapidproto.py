@@ -55,9 +55,8 @@ def ingredientname():
         print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
 
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
-<<<<<<< HEAD
+
         # Instructions
-=======
         print("Ingredients: ")
         x=1
         # print("Ingredients:     " + str(i["strIngredient1"]) + ", " + str(i["strIngredient2"]) + ", " + str(i["strIngredient3"]) + ", " + str(i["strIngredient4"]) + "\n")
@@ -68,7 +67,6 @@ def ingredientname():
 
         # Instructions
         #print("Instructions:    " + str(i["strInstructions"]), "\n")
->>>>>>> 9bd51a722e2855d534afda44da78ee9338f13de6
 
 
 # Call dashboard / Main
