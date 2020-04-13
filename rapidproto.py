@@ -3,10 +3,10 @@ import json
 import webbrowser
 from controlled_vocab import *
 
-UserInput = ""
+#UserInput = ""
 
-def cocktailname():
-    global UserInput
+def cocktailname(UserInput):
+    #global UserInput
     if (UserInput==""):
         print("Please enter the name of the cocktail: ")
         UserInput = input()
@@ -37,13 +37,33 @@ def cocktailname():
         print()
 
 
-def ingredientname():
-    global UserInput
+def choose_ingredient():
     print("Please enter ingredient: \n")
     UserInput = input()
 
-    #using controlled vocab (vodka only implemented)
     UserInput = vodka_cv(UserInput)
+    
+
+    #this will have to be the last cv check to be run, I'll see if there's
+    #a more efficient way to code this...
+    #this is due to the ingredientname() being called within whisky_cv()
+    UserInput = whisky_cv(UserInput)
+
+    if type(UserInput) is list:
+        for spirit in UserInput:
+            ingredientname(spirit)
+    else:
+        ingredientname(UserInput)
+
+    
+
+def ingredientname(UserInput):
+    #global UserInput
+    """print("Please enter ingredient: \n")
+    UserInput = input()
+
+    #using controlled vocab (vodka only implemented)
+    UserInput = vodka_cv(UserInput)"""
 
     f = r"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+UserInput
     data = requests.get(f)
@@ -58,6 +78,6 @@ def ingredientname():
         specificCocktail.append(str(i["strDrink"]))
 
     choice = input("Please choose the cocktail (by it's number): ")
-    UserInput = specificCocktail[int(choice)-1]
-    cocktailname()
+    chosen_drink = specificCocktail[int(choice)-1]
+    cocktailname(chosen_drink)
 
