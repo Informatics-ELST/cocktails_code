@@ -58,6 +58,8 @@ def ingredientname():
     selector = 0
     for i in (tt["drinks"]):
         selector= selector+1
+        numandname = [selector, i["strDrink"]]
+        print(numandname)
         print(str(selector) + ". " + str(i["strDrink"]), "\n")
         
     print("Please enter the number of the cocktail you would like to choose:")
