@@ -47,7 +47,7 @@ def ingredientname():
     #using controlled vocab (vodka only implemented)
     UserInput = vodka_cv(UserInput)
     
-    f = r" https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+UserInput
+    f = r"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+UserInput
     data = requests.get(f)
     tt = json.loads(data.text)
     #webbrowser.open(tt["url"])
