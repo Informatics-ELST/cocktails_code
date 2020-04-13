@@ -62,9 +62,6 @@ def ingredientname():
     for i in (tt["drinks"]):
         selector= selector+1
         print(str(selector) + ". " + str(i["strDrink"]), "\n")
-
-    print("Please enter the number of the cocktail you would like to choose:")
-    selected = input()
         specificCocktail.append(str(i["strDrink"]))
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
         # Instructions
