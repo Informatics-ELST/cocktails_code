@@ -52,22 +52,24 @@ def ingredientname():
     tt = json.loads(data.text)
     #webbrowser.open(tt["url"])
 
+    selector = 0
     for i in (tt["drinks"]):
-        print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
+        selector= selector+1
+        print(str(selector) + ". Cocktail Name:   " + str(i["strDrink"]), "\n")
         
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
-
         # Instructions
-        print("Ingredients: ")
-        x=1
+        # print("Ingredients: ")
+        # x=1
         # print("Ingredients:     " + str(i["strIngredient1"]) + ", " + str(i["strIngredient2"]) + ", " + str(i["strIngredient3"]) + ", " + str(i["strIngredient4"]) + "\n")
-        print(str(i["strIngredient"+str(x)]))
-        
-        while ((str(i["strIngredient"+str(x+1)]) != None)):
-            x=x+1
-            print(str(i["strIngredient"+str(x)]))
+        # print(str(i["strIngredient"+str(x)]))
 
-        # Instructions
+
+        # while ((str(i["strIngredient"+str(x+1)]) != None)):
+        #    x=x+1
+        #    print(str(i["strIngredient"+str(x)]))
+
+        # InstructionsV
         #print("Instructions:    " + str(i["strInstructions"]), "\n")
 
 
