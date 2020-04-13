@@ -63,21 +63,8 @@ def ingredientname():
         selector= selector+1
         print(str(selector) + ". " + str(i["strDrink"]), "\n")
         specificCocktail.append(str(i["strDrink"]))
-        # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
-        # Instructions
-        # print("Ingredients: ")
-        # x=1
-        # print("Ingredients:     " + str(i["strIngredient1"]) + ", " + str(i["strIngredient2"]) + ", " + str(i["strIngredient3"]) + ", " + str(i["strIngredient4"]) + "\n")
-        # print(str(i["strIngredient"+str(x)]))
-
-
-        # while ((str(i["strIngredient"+str(x+1)]) != None)):
-        #    x=x+1
-        #    print(str(i["strIngredient"+str(x)]))
-
-        # InstructionsV
-        #print("Instructions:    " + str(i["strInstructions"]), "\n")
-    choice = input("Please choose a cocktail(eg. 13): ")
+        
+    choice = input("Please choose the cocktail (by it's number): ")
     UserInput = specificCocktail[int(choice)-1]
     cocktailname()
 
