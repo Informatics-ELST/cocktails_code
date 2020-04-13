@@ -51,11 +51,11 @@ def ingredientname():
     data = requests.get(f)
     tt = json.loads(data.text)
     #webbrowser.open(tt["url"])
-
+    print("\nCocktail Name:")
     selector = 0
     for i in (tt["drinks"]):
         selector= selector+1
-        print(str(selector) + ". Cocktail Name:   " + str(i["strDrink"]), "\n")
+        print(str(selector) + ". " + str(i["strDrink"]), "\n")
         
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
         # Instructions
