@@ -20,11 +20,12 @@ def cocktailname():
 
         print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
         print("Ingredients:")
-        print("- " + str(i["strIngredient1"]))
+        print("- " + str(i["strMeasure1"]) +
+              " of " + str(i["strIngredient1"]))
         x=1
         while((str(i["strIngredient"+str(x+1)]))!="None"):
             x+=1
-            print("- " + str(i["strIngredient"+str(x)]))
+            print("- " + str(i["strMeasure"+str(x)]) + " of "+ str(i["strIngredient"+str(x)]))
         # Instructions
         print("\nInstructions: " + str(i["strInstructions"])+"\n")
 
