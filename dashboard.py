@@ -2,6 +2,8 @@ import requests
 import json
 import webbrowser
 from controlled_vocab import *
+from rapidproto import *
+
 
 print("Please specify how you would like search for a drink:")
 print("1 : Cocktail Name")
