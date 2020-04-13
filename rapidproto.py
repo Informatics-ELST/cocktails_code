@@ -26,7 +26,12 @@ def cocktailname():
             x+=1
             print("- " + str(i["strIngredient"+str(x)]))
         # Instructions
-        print("\nInstructions: " + str(i["strInstructions"])+"\n")
+        print("\nInstructions: ")
+        instructions = str(i["strInstructions"])
+        formatted = instructions.split(", ")
+        for x in formatted:
+            print("- "+(formatted[x]))
+
 
 def ingredientname():
     global UserInput
