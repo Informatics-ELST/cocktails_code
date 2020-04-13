@@ -5,7 +5,6 @@ from controlled_vocab import *
 
 UserInput = ""
 
-
 def cocktailname():
     global UserInput
     if (UserInput==""):
@@ -28,7 +27,6 @@ def cocktailname():
             print("- " + str(i["strIngredient"+str(x)]))
         # Instructions
         print("\nInstructions: " + str(i["strInstructions"])+"\n")
-
 
 def ingredientname():
     global UserInput
@@ -54,4 +52,3 @@ def ingredientname():
     UserInput = specificCocktail[int(choice)-1]
     cocktailname()
 
-# Call dashboard / Main
