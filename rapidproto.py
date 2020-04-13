@@ -19,19 +19,19 @@ def dashboard():
         cocktailname()
     if(selected == "2"):
         ingredientname()
-    else:
-        dashboard()
-
+    else: (print("Incorrect submission"))
+        
 
 def cocktailname():
-    if UserInput=="":
+    global UserInput
+    if (UserInput==""):
         print("Please enter the name of the cocktail: ")
         UserInput = input()
     f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+UserInput
     data = requests.get(f)
     tt = json.loads(data.text)
     #webbrowser.open(tt["url"])
-
+    
     for i in (tt["drinks"]):
         print("______________________________________")
 
@@ -39,32 +39,33 @@ def cocktailname():
 
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
         print("Ingredients:     " + str(i["strIngredient1"]) + ", " + str(i["strIngredient2"]) + ", " + str(i["strIngredient3"]) + ", " + str(i["strIngredient4"]) + "\n")
-
+ 
         # Instructions
         print("Instructions:    " + str(i["strInstructions"]), "\n")
 
 
 def ingredientname():
+    global UserInput
     print("Please enter ingredient: \n")
     UserInput = input()
 
     #using controlled vocab (vodka only implemented)
     UserInput = vodka_cv(UserInput)
-
+    
     f = r"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+UserInput
     data = requests.get(f)
     tt = json.loads(data.text)
     #webbrowser.open(tt["url"])
     print("\nCocktail Name:")
     selector = 0
+    specificCocktail = []
     for i in (tt["drinks"]):
         selector= selector+1
-        numandname = [selector, i["strDrink"]]
-        print(numandname)
         print(str(selector) + ". " + str(i["strDrink"]), "\n")
 
     print("Please enter the number of the cocktail you would like to choose:")
     selected = input()
+        specificCocktail.append(str(i["strDrink"]))
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
         # Instructions
         # print("Ingredients: ")
@@ -80,7 +81,7 @@ def ingredientname():
         # InstructionsV
         #print("Instructions:    " + str(i["strInstructions"]), "\n")
     choice = input("Please choose a cocktail(eg. 13): ")
-    UserInput = str(choice["strDrink"])
+    UserInput = specificCocktail[int(choice)-1]
     cocktailname()
 
 # Call dashboard / Main
