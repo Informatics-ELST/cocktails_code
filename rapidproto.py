@@ -17,8 +17,9 @@ def dashboard():
         cocktailname()
     if(selected == "2"):
         ingredientname()
-    else: (print("Incorrect submission"))
-        
+    else:
+        dashboard()
+
 
 def cocktailname():
     print("Please enter the name of the cocktail: ")
@@ -27,7 +28,7 @@ def cocktailname():
     data = requests.get(f)
     tt = json.loads(data.text)
     #webbrowser.open(tt["url"])
-    
+
     for i in (tt["drinks"]):
         print("______________________________________")
 
@@ -35,7 +36,7 @@ def cocktailname():
 
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
         print("Ingredients:     " + str(i["strIngredient1"]) + ", " + str(i["strIngredient2"]) + ", " + str(i["strIngredient3"]) + ", " + str(i["strIngredient4"]) + "\n")
- 
+
         # Instructions
         print("Instructions:    " + str(i["strInstructions"]), "\n")
 
@@ -46,7 +47,7 @@ def ingredientname():
 
     #using controlled vocab (vodka only implemented)
     UserInput = vodka_cv(UserInput)
-    
+
     f = r"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+UserInput
     data = requests.get(f)
     tt = json.loads(data.text)
@@ -56,7 +57,7 @@ def ingredientname():
     for i in (tt["drinks"]):
         selector= selector+1
         print(str(selector) + ". " + str(i["strDrink"]), "\n")
-        
+
     print("Please enter the number of the cocktail you would like to choose:")
     selected = input()
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
