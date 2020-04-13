@@ -3,6 +3,8 @@ import json
 import webbrowser
 from controlled_vocab import *
 
+UserInput = ""
+
 def dashboard():
 
     print("Please specify how you would like search for a drink:")
@@ -22,8 +24,9 @@ def dashboard():
 
 
 def cocktailname():
-    print("Please enter the name of the cocktail: ")
-    UserInput = input()
+    if UserInput=="":
+        print("Please enter the name of the cocktail: ")
+        UserInput = input()
     f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+UserInput
     data = requests.get(f)
     tt = json.loads(data.text)
@@ -57,9 +60,12 @@ def ingredientname():
     for i in (tt["drinks"]):
         selector= selector+1
         print(str(selector) + ". " + str(i["strDrink"]), "\n")
+<<<<<<< HEAD
 
     print("Please enter the number of the cocktail you would like to choose:")
     selected = input()
+=======
+>>>>>>> 1dd7e2fc416528c7dd1397a73971fb559a4e82f0
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
         # Instructions
         # print("Ingredients: ")
@@ -74,7 +80,9 @@ def ingredientname():
 
         # InstructionsV
         #print("Instructions:    " + str(i["strInstructions"]), "\n")
-
+    choice = input("Please choose a cocktail(eg. 13): ")
+    UserInput = str(choice["strDrink"])
+    cocktailname()
 
 # Call dashboard / Main
 dashboard()
