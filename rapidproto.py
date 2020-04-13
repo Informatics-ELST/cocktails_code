@@ -19,12 +19,18 @@ def cocktailname():
         print("______________________________________")
 
         print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
+        print("Ingredients:")
+        print("- " + str(i["strIngredient1"]))
+        x=1
+        while((str(i["strIngredient"+str(x+1)]))!="None"):
+            x+=1
+            print("- " + str(i["strIngredient"+str(x)]))
 
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
         print("Ingredients:     " + str(i["strIngredient1"]) + ", " + str(i["strIngredient2"]) + ", " + str(i["strIngredient3"]) + ", " + str(i["strIngredient4"]) + "\n")
 
         # Instructions
-        print("Instructions:    " + str(i["strInstructions"]), "\n")
+        print("\nInstructions: " + str(i["strInstructions"])+"\n")
 
 def ingredientname():
     global UserInput
