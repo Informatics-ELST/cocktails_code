@@ -57,6 +57,8 @@ def ingredientname():
         selector= selector+1
         print(str(selector) + ". " + str(i["strDrink"]), "\n")
         
+    print("Please enter the number of the cocktail you would like to choose:")
+    selected = input()
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
         # Instructions
         # print("Ingredients: ")
