@@ -23,7 +23,8 @@ def dashboard():
         
 
 def cocktailname():
-    if UserInput=="":
+    global UserInput
+    if (UserInput==""):
         print("Please enter the name of the cocktail: ")
         UserInput = input()
     f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+UserInput
@@ -44,6 +45,7 @@ def cocktailname():
 
 
 def ingredientname():
+    global UserInput
     print("Please enter ingredient: \n")
     UserInput = input()
 
@@ -56,9 +58,11 @@ def ingredientname():
     #webbrowser.open(tt["url"])
     print("\nCocktail Name:")
     selector = 0
+    specificCocktail = []
     for i in (tt["drinks"]):
         selector= selector+1
         print(str(selector) + ". " + str(i["strDrink"]), "\n")
+        specificCocktail.append(str(i["strDrink"]))
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
         # Instructions
         # print("Ingredients: ")
@@ -74,7 +78,7 @@ def ingredientname():
         # InstructionsV
         #print("Instructions:    " + str(i["strInstructions"]), "\n")
     choice = input("Please choose a cocktail(eg. 13): ")
-    UserInput = str(choice["strDrink"])
+    UserInput = specificCocktail[int(choice)-1]
     cocktailname()
 
 # Call dashboard / Main
