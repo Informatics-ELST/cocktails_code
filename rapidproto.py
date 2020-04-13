@@ -57,6 +57,7 @@ def ingredientname():
     print("\nCocktail Name:")
     selector = 0
     for i in (tt["drinks"]):
+        selector= selector+1
         print(str(selector) + ". " + str(i["strDrink"]), "\n")
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
         # Instructions
