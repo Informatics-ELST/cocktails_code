@@ -30,8 +30,10 @@ def cocktailname():
         print("\nInstructions: ")
         instructions = str(i["strInstructions"])
         formatted = instructions.split(". ")
+        j=1
         for x in formatted:
-            print("- "+(x))
+            print(str(j)+". "+(x))
+            j+=1
         print()
 
 
