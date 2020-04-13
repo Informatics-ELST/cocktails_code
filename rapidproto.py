@@ -62,12 +62,9 @@ def ingredientname():
         numandname = [selector, i["strDrink"]]
         print(numandname)
         print(str(selector) + ". " + str(i["strDrink"]), "\n")
-<<<<<<< HEAD
 
     print("Please enter the number of the cocktail you would like to choose:")
     selected = input()
-=======
->>>>>>> 1dd7e2fc416528c7dd1397a73971fb559a4e82f0
         # Ingredients - need to fix if there are not 4 ingredients (maybe loop?)
         # Instructions
         # print("Ingredients: ")
