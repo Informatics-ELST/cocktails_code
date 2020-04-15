@@ -31,7 +31,7 @@ def surprise_me():
             print(str(j)+". "+(x))
             j += 1
         print("______________________________________")
-    
+
 def cocktail_name(user_input):
     if user_input == "":
         print("Please enter the name of the cocktail: ")
@@ -47,7 +47,7 @@ def cocktail_name(user_input):
         print()
         print("Sorry, That cocktail doesn't exist in our database :-(. Please try searching for something else")
         print()
-        cocktail_name()
+        
     else:
         for i in (tt["drinks"]):
             print("______________________________________")
@@ -72,7 +72,7 @@ def cocktail_name(user_input):
 
 def ingredient_name():
     #using controlled vocab (vodka only implemented)
-    user_input = vodka_cv(user_input)
+    #user_input = vodka_cv(user_input)
 
     f = r"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+input()
     data = requests.get(f)
