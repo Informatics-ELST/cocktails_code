@@ -5,6 +5,33 @@ from controlled_vocab import *
 
 UserInput = ""
 
+def surpriseme():
+    print("We're selecting a random cocktail for you...")
+    f = r"https: // www.thecocktaildb.com/api/json/v1/1/random.php"
+    data = requests.get(f)
+    tt = json.loads(data.text)
+    for i in (tt["drinks"]):
+        print("______________________________________")
+
+        print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
+        print("Ingredients:")
+        print("- " + str(i["strMeasure1"]) +
+                " of " + str(i["strIngredient1"]))
+        x = 1
+        while((str(i["strIngredient"+str(x+1)])) != "None"):
+             x += 1
+             print("- " + str(i["strMeasure"+str(x)]) +
+                  " of " + str(i["strIngredient"+str(x)]))
+        # Instructions
+        print("\nInstructions: ")
+        instructions = str(i["strInstructions"])
+        formatted = instructions.split(". ")
+        j = 1
+        for x in formatted:
+            print(str(j)+". "+(x))
+            j += 1
+        print("______________________________________")
+    
 def cocktailname():
     global UserInput
     print("Please enter the name of the cocktail: ")
