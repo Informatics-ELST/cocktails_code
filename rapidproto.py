@@ -32,10 +32,13 @@ def surprise_me():
             j += 1
         print("______________________________________")
     
-def cocktail_name():
-    global user_input
-    print("Please enter the name of the cocktail: ")
-    f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+input()
+def cocktail_name(user_input):
+    if user_input == "":
+        print("Please enter the name of the cocktail: ")
+    else:
+        pass
+
+    f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+user_input
     data = requests.get(f)
     tt = json.loads(data.text)
     #webbrowser.open(tt["url"])
@@ -65,12 +68,9 @@ def cocktail_name():
             for x in formatted:
                 print(str(j)+". "+(x))
                 j+=1
-            print()
             print("______________________________________")
-            print()
 
 def ingredient_name():
-    global user_input
     #using controlled vocab (vodka only implemented)
     user_input = vodka_cv(user_input)
 
@@ -91,4 +91,4 @@ def ingredient_name():
 
         choice = input("Please choose the cocktail (by it's number): ")
         user_input = specific_cocktail[int(choice)-1]
-        cocktail_name()
+        cocktail_name(user_input)
