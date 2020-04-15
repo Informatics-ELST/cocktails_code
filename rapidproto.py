@@ -1,37 +1,14 @@
+# Imports
 import requests
 import json
 import webbrowser
 from controlled_vocab import *
 
+
+# Global Definitions
 user_input = ""
 
-def surprise_me():
-    print("We're selecting a random cocktail for you...")
-    f = r"https: // www.thecocktaildb.com/api/json/v1/1/random.php"
-    data = requests.get(f)
-    tt = json.loads(data.text)
-    for i in (tt["drinks"]):
-        print("______________________________________")
-
-        print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
-        print("Ingredients:")
-        print("- " + str(i["strMeasure1"]) +
-                " of " + str(i["strIngredient1"]))
-        x = 1
-        while((str(i["strIngredient"+str(x+1)])) != "None"):
-             x += 1
-             print("- " + str(i["strMeasure"+str(x)]) +
-                  " of " + str(i["strIngredient"+str(x)]))
-        # Instructions
-        print("\nInstructions: ")
-        instructions = str(i["strInstructions"])
-        formatted = instructions.split(". ")
-        j = 1
-        for x in formatted:
-            print(str(j)+". "+(x))
-            j += 1
-        print("______________________________________")
-    
+# SEARCH for a cocktail by it's name
 def cocktail_name(user_input):
     if user_input == "":
         print("Please enter the name of the cocktail: ")
@@ -43,6 +20,7 @@ def cocktail_name(user_input):
     tt = json.loads(data.text)
     #webbrowser.open(tt["url"])
 
+    # Handling incorrect inputs
     if tt["drinks"] is None:
         print()
         print("Sorry, That cocktail doesn't exist in our database :-(. Please try searching for something else")
@@ -53,6 +31,8 @@ def cocktail_name(user_input):
             print("______________________________________")
 
             print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
+            
+            # Printing the ingredients and their respective quantities.
             print("Ingredients:")
             print("- " + str(i["strMeasure1"]) +
                   " of " + str(i["strIngredient1"]))
@@ -60,7 +40,8 @@ def cocktail_name(user_input):
             while((str(i["strIngredient"+str(x+1)]))!="None"):
                 x+=1
                 print("- " + str(i["strMeasure"+str(x)]) + " of "+ str(i["strIngredient"+str(x)]))
-            # Instructions
+
+            # Printing the instructions
             print("\nInstructions: ")
             instructions = str(i["strInstructions"])
             formatted = instructions.split(". ")
@@ -70,7 +51,11 @@ def cocktail_name(user_input):
                 j+=1
             print("______________________________________")
 
+
+# FILTER Cocktails by an ingredient's name.
+# Note  : this will display all the outputs, however, to see more details of the outputs a SEARCH function will be called
 def ingredient_name():
+    global user_input
     #using controlled vocab (vodka only implemented)
     user_input = vodka_cv(user_input)
 
@@ -92,3 +77,31 @@ def ingredient_name():
         choice = input("Please choose the cocktail (by it's number): ")
         user_input = specific_cocktail[int(choice)-1]
         cocktail_name(user_input)
+
+# Allows users to find a random cocktail (ID_RANGE: 1100 - )
+def surprise_me():
+    print("We're selecting a random cocktail for you...")
+    f = r"https://www.thecocktaildb.com/api/json/v1/1/random.php"
+    data = requests.get(f)
+    tt = json.loads(data.text)
+    for i in (tt["drinks"]):
+        print("______________________________________")
+
+        print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
+        print("Ingredients:")
+        print("- " + str(i["strMeasure1"]) +
+              " of " + str(i["strIngredient1"]))
+        x = 1
+        while((str(i["strIngredient"+str(x+1)])) != "None"):
+            x += 1
+            print("- " + str(i["strMeasure"+str(x)]) +
+                  " of " + str(i["strIngredient"+str(x)]))
+        # Instructions
+        print("\nInstructions: ")
+        instructions = str(i["strInstructions"])
+        formatted = instructions.split(". ")
+        j = 1
+        for x in formatted:
+            print(str(j)+". "+(x))
+            j += 1
+        print("______________________________________")
