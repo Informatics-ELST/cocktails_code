@@ -3,18 +3,20 @@ import json
 import webbrowser
 from controlled_vocab import *
 
+UserInput = ""
+
 def cocktailname():
-    print("Please enter the name of the cocktail: ")
-    UserInput = input()
-    f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+UserInput
+    global UserInput
+    f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+input()
     data = requests.get(f)
     tt = json.loads(data.text)
     #webbrowser.open(tt["url"])
 
     if tt["drinks"] is None:
         print()
-        print("Sorry, That cocktail doesn't exist in our database :-(")
+        print("Sorry, That cocktail doesn't exist in our database :-(. Please try searching for something else")
         print()
+        cocktailname()
     else:
         for i in (tt["drinks"]):
             print("______________________________________")
@@ -36,27 +38,29 @@ def cocktailname():
                 print(str(j)+". "+(x))
                 j+=1
             print()
-
+            print("______________________________________")
+            print()
 
 def ingredientname():
-    print("Please enter ingredient: \n")
-    UserInput = input()
-
+    global UserInput
     #using controlled vocab (vodka only implemented)
     UserInput = vodka_cv(UserInput)
 
-    f = r"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+UserInput
+    f = r"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+input()
     data = requests.get(f)
     tt = json.loads(data.text)
     #webbrowser.open(tt["url"])
-    print("\nCocktail Name:")
-    selector = 0
-    specificCocktail = []
-    for i in (tt["drinks"]):
-        selector= selector+1
-        print(str(selector) + ". " + str(i["strDrink"]), "\n")
-        specificCocktail.append(str(i["strDrink"]))
+    if tt is None:
+        print("sorry bro no can do")
+    else:
+        print("\nCocktail Name:")
+        selector = 0
+        specificCocktail = []
+        for i in (tt["drinks"]):
+            selector= selector+1
+            print(str(selector) + ". " + str(i["strDrink"]), "\n")
+            specificCocktail.append(str(i["strDrink"]))
 
-    choice = input("Please choose the cocktail (by it's number): ")
-    UserInput = specificCocktail[int(choice)-1]
-    cocktailname()
+        choice = input("Please choose the cocktail (by it's number): ")
+        UserInput = specificCocktail[int(choice)-1]
+        cocktailname()
