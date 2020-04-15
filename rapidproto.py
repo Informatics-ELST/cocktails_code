@@ -3,9 +3,9 @@ import json
 import webbrowser
 from controlled_vocab import *
 
-UserInput = ""
+user_input = ""
 
-def surpriseme():
+def surprise_me():
     print("We're selecting a random cocktail for you...")
     f = r"https: // www.thecocktaildb.com/api/json/v1/1/random.php"
     data = requests.get(f)
@@ -32,8 +32,8 @@ def surpriseme():
             j += 1
         print("______________________________________")
     
-def cocktailname():
-    global UserInput
+def cocktail_name():
+    global user_input
     print("Please enter the name of the cocktail: ")
     f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+input()
     data = requests.get(f)
@@ -44,7 +44,7 @@ def cocktailname():
         print()
         print("Sorry, That cocktail doesn't exist in our database :-(. Please try searching for something else")
         print()
-        cocktailname()
+        cocktail_name()
     else:
         for i in (tt["drinks"]):
             print("______________________________________")
@@ -69,10 +69,10 @@ def cocktailname():
             print("______________________________________")
             print()
 
-def ingredientname():
-    global UserInput
+def ingredient_name():
+    global user_input
     #using controlled vocab (vodka only implemented)
-    UserInput = vodka_cv(UserInput)
+    user_input = vodka_cv(user_input)
 
     f = r"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+input()
     data = requests.get(f)
@@ -83,12 +83,12 @@ def ingredientname():
     else:
         print("\nCocktail Name:")
         selector = 0
-        specificCocktail = []
+        specific_cocktail = []
         for i in (tt["drinks"]):
             selector= selector+1
             print(str(selector) + ". " + str(i["strDrink"]), "\n")
-            specificCocktail.append(str(i["strDrink"]))
+            specific_cocktail.append(str(i["strDrink"]))
 
         choice = input("Please choose the cocktail (by it's number): ")
-        UserInput = specificCocktail[int(choice)-1]
-        cocktailname()
+        user_input = specific_cocktail[int(choice)-1]
+        cocktail_name()
