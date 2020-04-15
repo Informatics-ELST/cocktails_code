@@ -11,26 +11,31 @@ def cocktailname():
     tt = json.loads(data.text)
     #webbrowser.open(tt["url"])
 
-    for i in (tt["drinks"]):
-        print("______________________________________")
-
-        print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
-        print("Ingredients:")
-        print("- " + str(i["strMeasure1"]) +
-              " of " + str(i["strIngredient1"]))
-        x=1
-        while((str(i["strIngredient"+str(x+1)]))!="None"):
-            x+=1
-            print("- " + str(i["strMeasure"+str(x)]) + " of "+ str(i["strIngredient"+str(x)]))
-        # Instructions
-        print("\nInstructions: ")
-        instructions = str(i["strInstructions"])
-        formatted = instructions.split(". ")
-        j=1
-        for x in formatted:
-            print(str(j)+". "+(x))
-            j+=1
+    if tt["drinks"] is None:
         print()
+        print("Sorry, That cocktail doesn't exist in our database :-(")
+        print()
+    else:
+        for i in (tt["drinks"]):
+            print("______________________________________")
+
+            print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
+            print("Ingredients:")
+            print("- " + str(i["strMeasure1"]) +
+                  " of " + str(i["strIngredient1"]))
+            x=1
+            while((str(i["strIngredient"+str(x+1)]))!="None"):
+                x+=1
+                print("- " + str(i["strMeasure"+str(x)]) + " of "+ str(i["strIngredient"+str(x)]))
+            # Instructions
+            print("\nInstructions: ")
+            instructions = str(i["strInstructions"])
+            formatted = instructions.split(". ")
+            j=1
+            for x in formatted:
+                print(str(j)+". "+(x))
+                j+=1
+            print()
 
 
 def ingredientname():
