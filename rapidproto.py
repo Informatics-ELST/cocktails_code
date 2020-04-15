@@ -9,23 +9,44 @@ from controlled_vocab import *
 user_input = ""
 
 # SEARCH for a cocktail by it's name
+        
+
+
 def cocktail_name(user_input):
+    f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+user_input
+    data = requests.get(f)
+    tt = json.loads(data.text)
+    #webbrowser.open(tt["url"])
     if user_input == "":
         print("Please enter the name of the cocktail: ")
     else:
         pass
 
-    f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+user_input
-    data = requests.get(f)
-    tt = json.loads(data.text)
-    #webbrowser.open(tt["url"])
+    print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
+    print("Ingredients:")
+    print("- " + str(i["strMeasure1"]) +
+            " of " + str(i["strIngredient1"]))
+    x = 1
+    while((str(i["strIngredient"+str(x+1)])) != "None"):
+        x += 1
+        print("- " + str(i["strMeasure"+str(x)]) + " of " + str(i["strIngredient"+str(x)]))
+        # Instructions
+        print("\nInstructions: ")
+        instructions = str(i["strInstructions"])
+        formatted = instructions.split(". ")
+        j = 1
+        for x in formatted:
+            print(str(j)+". "+(x))
+            j += 1
+        print("______________________________________")
+    
 
     # Handling incorrect inputs
     if tt["drinks"] is None:
         print()
         print("Sorry, That cocktail doesn't exist in our database :-(. Please try searching for something else")
         print()
-        cocktail_name()
+        
     else:
         for i in (tt["drinks"]):
             print("______________________________________")
@@ -57,7 +78,7 @@ def cocktail_name(user_input):
 def ingredient_name():
     global user_input
     #using controlled vocab (vodka only implemented)
-    user_input = vodka_cv(user_input)
+    #user_input = vodka_cv(user_input)
 
     f = r"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+input()
     data = requests.get(f)

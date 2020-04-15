@@ -13,10 +13,12 @@ def dashboard():
 
     selected = input("Enter your choice: ")
     if(selected == "1"):
-        cocktail_name()
+        print("Please enter the name of the cocktail: ")
+        choice = input()
+        cocktail_name(choice)
     if(selected == "2"):
         print("Please enter ingredient: ")
-        ingredient_name()
+        ingredient_name(user_input)
     if(selected == "3"):
         print("A surprise is on it's way!")
         surprise_me()
