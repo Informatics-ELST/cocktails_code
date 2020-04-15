@@ -83,15 +83,15 @@ def ingredient_name():
 
 # Allows users to find a random cocktail (ID_RANGE: 1100 - )
 def surprise_me():
-    print("We're selecting a random cocktail for you...")
+    
     f = r"https://www.thecocktaildb.com/api/json/v1/1/random.php"
     data = requests.get(f)
     tt = json.loads(data.text)
     for i in (tt["drinks"]):
         print("______________________________________")
 
-        print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
-        print("Ingredients:")
+        print("\nWe have selected:   " + str(i["strDrink"]), "\n")
+        print("Here's the ingredients:")
         print("- " + str(i["strMeasure1"]) +
               " of " + str(i["strIngredient1"]))
         x = 1
@@ -100,7 +100,7 @@ def surprise_me():
             print("- " + str(i["strMeasure"+str(x)]) +
                   " of " + str(i["strIngredient"+str(x)]))
         # Instructions
-        print("\nInstructions: ")
+        print("\nThis is how you make it: ")
         instructions = str(i["strInstructions"])
         formatted = instructions.split(". ")
         j = 1

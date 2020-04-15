@@ -20,7 +20,7 @@ def dashboard():
         print("Please enter ingredient: ")
         ingredient_name()
     if(selected == "3"):
-        print("A surprise is on it's way!")
+        print("We're selecting a random cocktail for you...")        
         surprise_me()
     else:
         dashboard()
