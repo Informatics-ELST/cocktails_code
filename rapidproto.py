@@ -7,6 +7,7 @@ UserInput = ""
 
 def cocktailname():
     global UserInput
+    print("Please enter the name of the cocktail: ")
     f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+input()
     data = requests.get(f)
     tt = json.loads(data.text)

@@ -11,7 +11,7 @@ def dashboard():
 
     selected = input()
     if(selected == "1"):
-        print("Please enter the name of the cocktail: ")
+        
         cocktailname()
     if(selected == "2"):
         print("Please enter ingredient: ")
