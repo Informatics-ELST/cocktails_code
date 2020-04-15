@@ -3,13 +3,9 @@ import json
 import webbrowser
 from controlled_vocab import *
 
-UserInput = ""
-
 def cocktailname():
-    global UserInput
-    if (UserInput==""):
-        print("Please enter the name of the cocktail: ")
-        UserInput = input()
+    print("Please enter the name of the cocktail: ")
+    UserInput = input()
     f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+UserInput
     data = requests.get(f)
     tt = json.loads(data.text)
@@ -38,7 +34,6 @@ def cocktailname():
 
 
 def ingredientname():
-    global UserInput
     print("Please enter ingredient: \n")
     UserInput = input()
 
@@ -60,4 +55,3 @@ def ingredientname():
     choice = input("Please choose the cocktail (by it's number): ")
     UserInput = specificCocktail[int(choice)-1]
     cocktailname()
-
