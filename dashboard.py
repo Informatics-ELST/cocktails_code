@@ -14,11 +14,11 @@ def dashboard():
     selected = input("Enter your choice: ")
     if(selected == "1"):
         print("Please enter the name of the cocktail: ")
-        choice = input()
-        cocktail_name(choice)
+        user_input = input()
+        cocktail_name(user_input)
     if(selected == "2"):
         print("Please enter ingredient: ")
-        ingredient_name(user_input)
+        ingredient_name()
     if(selected == "3"):
         print("A surprise is on it's way!")
         surprise_me()

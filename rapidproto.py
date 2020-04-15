@@ -13,33 +13,15 @@ user_input = ""
 
 
 def cocktail_name(user_input):
+    
+    if user_input == "":
+        user_input = input("Please enter the name of the cocktail: ")
+    else:
+        pass
     f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+user_input
     data = requests.get(f)
     tt = json.loads(data.text)
-    #webbrowser.open(tt["url"])
-    if user_input == "":
-        print("Please enter the name of the cocktail: ")
-    else:
-        pass
-
-    print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
-    print("Ingredients:")
-    print("- " + str(i["strMeasure1"]) +
-            " of " + str(i["strIngredient1"]))
-    x = 1
-    while((str(i["strIngredient"+str(x+1)])) != "None"):
-        x += 1
-        print("- " + str(i["strMeasure"+str(x)]) + " of " + str(i["strIngredient"+str(x)]))
-        # Instructions
-        print("\nInstructions: ")
-        instructions = str(i["strInstructions"])
-        formatted = instructions.split(". ")
-        j = 1
-        for x in formatted:
-            print(str(j)+". "+(x))
-            j += 1
-        print("______________________________________")
-    
+    #webbrowser.open(tt[f])
 
     # Handling incorrect inputs
     if tt["drinks"] is None:
