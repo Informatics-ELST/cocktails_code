@@ -2,6 +2,8 @@ import json
 #from vodka_spider import *
 import tutorial
 #from spiders import *
+from rapidproto import *
+
 
 def vodka_cv(user_ingredient):
     with open('tutorial/vodka.json', 'r') as myfile:
@@ -23,6 +25,31 @@ def vodka_cv(user_ingredient):
     #print(vodka_list)
 
     if user_ingredient.lower() in vodka_list:
-        return "vodka"
+        return ["vodka"]
     else:
-        return user_ingredient
+        return [user_ingredient]
+
+def whisky_cv(user_ingredient):
+
+    #############################
+    #NEED TO ADD BRANDS!!!!!!!!!#
+    #############################
+    
+    #user_ingredient = user_ingredient.lower()
+    whisky_list = ["scotch", "whisky", "blended whisky", "single malt",
+                   "whiskey", "blended whiskey", "irish whiskey"] #any more to add?
+
+    if user_ingredient.lower() in whisky_list:
+        """ingredientname("Scotch")
+        ingredientname("Blended Whiskey")
+        ingredientname("Whiskey")"""
+        #add all other whisky types from db to this list bellow
+        return ["Scotch", "Blended whiskey", "Whiskey", "Irish whiskey"]
+
+    else:
+        return [user_ingredient]
+        
+
+
+
+
