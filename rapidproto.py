@@ -73,6 +73,7 @@ def ingredient_name(ingredient_list):
 
 
     try:
+        #print("try triggered")
         selector = 0
         specific_cocktail = []
         for ingredient in ingredient_list:

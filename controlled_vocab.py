@@ -34,16 +34,28 @@ def whisky_cv(user_ingredient):
     #############################
     #NEED TO ADD BRANDS!!!!!!!!!#
     #############################
-    
-    #user_ingredient = user_ingredient.lower()
-    whisky_list = ["scotch", "whisky", "blended whisky", "single malt",
-                   "whiskey", "blended whiskey", "irish whiskey"] #any more to add?
 
+    with open('tutorial/whisky.json', 'r') as myfile:
+        data=myfile.read()
+
+    myfile.close()
+
+    obj = json.loads(data)
+
+    whisky_list = ["scotch", "whisky", "blended whisky", "single malt",
+                   "whiskey", "blended whiskey", "irish whiskey"]
+    #any more to add to above list???
+
+    for pair in obj:
+        whisky_list.append((pair["whisky_brand"]).lower())
+
+    #user_ingredient = user_ingredient.lower()
+    
     if user_ingredient.lower() in whisky_list:
         """ingredientname("Scotch")
         ingredientname("Blended Whiskey")
         ingredientname("Whiskey")"""
-        #add all other whisky types from db to this list bellow
+        #add all other whisky types from cocktails db to this list bellow
         return ["Scotch", "Blended whiskey", "Whiskey", "Irish whiskey"]
 
     else:
