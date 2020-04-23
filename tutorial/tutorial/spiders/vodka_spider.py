@@ -21,7 +21,7 @@ import scrapy
                 f.write(response.body)
             self.log('Saved file %s' % filename)"""
 
-class QuotesSpider(scrapy.Spider):
+class VodkaSpider(scrapy.Spider):
     name = "vodka"
     start_urls = [
         'https://en.wikipedia.org/wiki/List_of_vodkas',
