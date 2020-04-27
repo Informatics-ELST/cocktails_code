@@ -3,34 +3,34 @@
 import scrapy
 
 
-"""class VodkaSpider(scrapy.Spider):
-    name = "vodka"
+"""class GinSpider(scrapy.Spider):
+    name = "gin"
 
     def start_requests(self):
             urls = [
-                'https://en.wikipedia.org/wiki/List_of_vodkas',
+                'https://www.thewhiskyexchange.com/brands/spirits/338/gin',
             ]
             for url in urls:
                 yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
             #page = response.url.split("/")[-2]
-            #filename = 'quotes-%s.html' % page
-            filename = 'vodka.html'
+            #filename = 'gin-%s.html' % page
+            filename = 'gin.html'
             with open(filename, 'wb') as f:
                 f.write(response.body)
             self.log('Saved file %s' % filename)"""
 
-class VodkaSpider(scrapy.Spider):
-    name = "vodka"
+class GinSpider(scrapy.Spider):
+    name = "gin"
     start_urls = [
-        'https://en.wikipedia.org/wiki/List_of_vodkas',
+        'https://www.thewhiskyexchange.com/brands/spirits/338/gin',
     ]
 
-    #response.css('tr td:nth-child(1) a::text').getall()
+    #response.css('az-item-name a::text').getall()
     def parse(self, response):
-        for vodka in response.css('tr td:nth-child(1)'):
+        for gin in response.css('az-item-name'):
             yield {
-                'vodka_brand': vodka.css('a::text').get(),
+                'gin_brand': gin.css('a::text').get(),
 
             }

@@ -48,6 +48,30 @@ def whisky_cv(user_ingredient):
 
     else:
         return [user_ingredient]
+
+def gin_cv(user_ingredient):
+    with open('tutorial/gin.json', 'r') as myfile:
+        data=myfile.read()
+
+    myfile.close()
+
+    obj = json.loads(data)
+
+    #gin_list = [str(obj['gin brand'])]
+    #print (gin_list)
+    #print(obj)
+
+    gin_list = []
+    for pair in obj:
+        #print(pair["gin_brand"])
+        gin_list.append((pair["gin_brand"]).lower())
+
+    #print(gin_list)
+
+    if user_ingredient.lower() in gin_list:
+        return ["gin"]
+    else:
+        return [user_ingredient]
         
 
 
