@@ -2,6 +2,7 @@ import requests
 import json
 import webbrowser
 from controlled_vocab import *
+from m_r_json import *
 
 
 """# Global Definitions
@@ -36,6 +37,8 @@ def cocktail_name(user_input):
         for i in (tt["drinks"]):
             print("______________________________________")
 
+            cocktail_name_var = str(i["strDrink"])
+
             print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
             
             # Printing the ingredients and their respective quantities.
@@ -53,16 +56,31 @@ def cocktail_name(user_input):
                 x += 1
                 
             #print(ingredients_output_list)
+    machine_readable_outputs(cocktail_name_var, ingredients_output_list, "add instructions")
 
+def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_instructions):
+    print("Would you like to produce a machine readable output?\nIf so, what type of output do you require?")
 
-    #mr = input("Would you like to produce a machine readable output? If so, what type?")
-    #print("0 : No, I would not like a machine readable output")
+    print("0 : No, I would not like a machine readable output")
+    print("1 : RDFa")
+    print("2 : HTML Microdata")
+    print("3 : JSON LD")
 
-    #print("1 : RDFa")
-
-    #print("2 : HTML Microdata")
+    m_r_input = input()
     #recipe name, author, date published, description, preptime, cooktime, ingredients, instructions
-    
+
+    if m_r_input == "0":
+        return
+    elif m_r_input == "1":
+        #rdfa funtion call here
+        pass
+    elif m_r_input == "2":
+        #html funtion call here
+        pass
+    elif m_r_input == "3":
+        m_r_json(cocktail_name, cocktail_ingredients_list, "test")
+
+
 
 def choose_ingredient():
     user_input = []
