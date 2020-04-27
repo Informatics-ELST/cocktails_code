@@ -71,7 +71,6 @@ def choose_ingredient():
 # Note  : this will display all the outputs, however, to see more details of the outputs a SEARCH function will be called
 def ingredient_name(ingredient_list):
 
-
     try:
         selector = 0
         specific_cocktail = []
