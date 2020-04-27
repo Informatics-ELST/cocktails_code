@@ -21,7 +21,7 @@ import scrapy
                 f.write(response.body)
             self.log('Saved file %s' % filename)"""
 
-class QuotesSpider(scrapy.Spider):
+class WhiskySpider(scrapy.Spider):
     name = "whisky"
     start_urls = [
         'https://www.thewhiskyexchange.com/brands/scotchwhisky/40/single-malt-scotch-whisky',
