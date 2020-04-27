@@ -40,21 +40,19 @@ def cocktail_name(user_input):
             
             # Printing the ingredients and their respective quantities.
             print("Ingredients:")
-            print("- " + str(i["strMeasure1"]) +
-                  " of " + str(i["strIngredient1"]))
 
             new_ingredient = ""
             ingredients_output_list = []
-            x=1
-            while((str(i["strIngredient"+str(x+1)]))!="None"):
-                
+            x = 1
+            while((str(i["strIngredient"+str(x)]))!="None"):
                 new_ingredient = str(i["strMeasure"+str(x)]) + " of " + str(i["strIngredient"+str(x)])
                 ingredients_output_list.append(new_ingredient)
+                print(new_ingredient)
+
                 #print("1")
                 x += 1
                 
-            
-            print(ingredients_output_list)
+            #print(ingredients_output_list)
 
 
     #mr = input("Would you like to produce a machine readable output? If so, what type?")
