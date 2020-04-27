@@ -56,10 +56,11 @@ def cocktail_name(user_input):
 
 
     #mr = input("Would you like to produce a machine readable output? If so, what type?")
+    
     #print("0 : No, I would not like a machine readable output")
 
     #print("1 : RDFa")
-
+    #make_json()
     #print("2 : HTML Microdata")
     #recipe name, author, date published, description, preptime, cooktime, ingredients, instructions
     
