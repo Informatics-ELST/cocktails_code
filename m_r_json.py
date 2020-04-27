@@ -6,14 +6,36 @@ def m_r_json(cocktail_name, cocktail_ingredients, cocktail_instructions):
     #takes drink name in, recipe
     #ingredients comes as list of ingredients
 
+    ingredients = ""
+    for ingredient in cocktail_ingredients:
+        ingredients = ingredients + ingredient + ", " 
+    ingredients = ingredients[:-2]
+
+    instructions = ""
+    for instruction in cocktail_instructions:
+        instructions = instructions + instruction + ", "
+    instructions = instructions[:-2]
+
     data = {}
-    data['cocktail'] = []
+    data['@context'] = 'https://schema.org'
+    data['@type'] = 'Recipe'
+
+    data['name'] = cocktail_name
+    data['ingredients'] = ingredients
+    data['instructions'] = instructions
+
+    """data['cocktail'] = []
     data['cocktail'].append({
         'name': str(cocktail_name),
-        'ingredients': str(cocktail_ingredients),
-        'instructions': str(cocktail_instructions)})
+        'ingredients': str(ingredients),
+        'instructions': str(instructions)
+        })"""
 
-    with open('cocktail_m_r_json_output.txt', 'w') as outfile:
-        json.dump(data, outfile)
+    with open('cocktail_m_r_json_output.txt', 'w') as file:
+        file.write('<script type="application/ld+json">')
+        json.dump(data, file)
+        file.write('</script>')
+
+    file.close()
 
     print("\nWritten to JSON file!\n")

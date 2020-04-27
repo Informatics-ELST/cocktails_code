@@ -56,12 +56,24 @@ def cocktail_name(user_input):
                 x += 1
                 
             #print(ingredients_output_list)
-    machine_readable_outputs(cocktail_name_var, ingredients_output_list, "add instructions")
+
+            #code for instructions (copied from surprise me
+            print("\nThis is how you make it: ")
+            instructions = str(i["strInstructions"])
+            formatted = instructions.split(". ")
+            j = 1
+            instructions_list = []
+            for x in formatted:
+                instructions_list.append(str(j)+". "+(x))
+                print(str(j)+". "+(x))
+                j += 1
+                
+    machine_readable_outputs(cocktail_name_var, ingredients_output_list, instructions_list)
 
 def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_instructions):
-    print("Would you like to produce a machine readable output?\nIf so, what type of output do you require?")
+    print("\nWould you like to produce a machine readable output?\nIf so, what type of output do you require?")
 
-    print("0 : No, I would not like a machine readable output")
+    print("\n0 : No, I would not like a machine readable output")
     print("1 : RDFa")
     print("2 : HTML Microdata")
     print("3 : JSON LD")
@@ -78,7 +90,7 @@ def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_
         #html funtion call here
         pass
     elif m_r_input == "3":
-        m_r_json(cocktail_name, cocktail_ingredients_list, "test")
+        m_r_json(cocktail_name, cocktail_ingredients_list, cocktail_instructions)
 
 
 
