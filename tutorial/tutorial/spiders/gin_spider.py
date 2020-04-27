@@ -31,6 +31,6 @@ class GinSpider(scrapy.Spider):
     def parse(self, response):
         for gin in response.css('az-item-name'):
             yield {
-                'gin_brand': gin.css('a::text').get(),
+                'gin_brand': gin.css('span.text::text').get(),
 
             }
