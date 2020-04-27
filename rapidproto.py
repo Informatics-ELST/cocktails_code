@@ -35,7 +35,11 @@ def cocktailname(UserInput):
             print(str(j)+". "+(x))
             j+=1
         print()
-
+    mr = input("Would you like to produce a machine readable output? If so, what type?")
+    print("0 : No, I would not like a machine readable output")
+    print("1 : RDFa")
+    print("2 : HTML Microdata")
+    
 
 def choose_ingredient():
     print("Please enter ingredient: \n")
