@@ -43,7 +43,6 @@ def cocktail_name(user_input):
 
             # Printing the ingredients and their respective quantities.
             print("Ingredients:")
-<<<<<<< HEAD
             print("- " + str(i["strMeasure1"]) +
                   " of " + str(i["strIngredient1"]))
             x=1
@@ -60,27 +59,23 @@ def cocktail_name(user_input):
                 j += 1
             print("______________________________________")
 
-    mr = input("Would you like to produce a machine readable output? If so, what type?")
-=======
+            # new_ingredient = ""
+            # ingredients_output_list = []
+            # x = 1
+            # while((str(i["strIngredient"+str(x)]))!="None"):
+            #     new_ingredient = str(i["strMeasure"+str(x)]) + " of " + str(i["strIngredient"+str(x)])
+            #     ingredients_output_list.append(new_ingredient)
+            #     print(new_ingredient)
+            #
+            #     #print("1")
+            #     x += 1
 
-            new_ingredient = ""
-            ingredients_output_list = []
-            x = 1
-            while((str(i["strIngredient"+str(x)]))!="None"):
-                new_ingredient = str(i["strMeasure"+str(x)]) + " of " + str(i["strIngredient"+str(x)])
-                ingredients_output_list.append(new_ingredient)
-                print(new_ingredient)
-
-                #print("1")
-                x += 1
-                
-            #print(ingredients_output_list)
-    machine_readable_outputs(cocktail_name_var, ingredients_output_list, "add instructions")
+                        #print(ingredients_output_list)
+    #machine_readable_outputs(cocktail_name_var, ingredients_output_list, "add instructions")
 
 def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_instructions):
     print("Would you like to produce a machine readable output?\nIf so, what type of output do you require?")
 
->>>>>>> 1be1f1b70981b198bc892433f3311e6df46b8c64
     print("0 : No, I would not like a machine readable output")
     print("1 : RDFa")
     print("2 : HTML Microdata")
@@ -89,8 +84,6 @@ def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_
     m_r_input = input()
     #recipe name, author, date published, description, preptime, cooktime, ingredients, instructions
 
-<<<<<<< HEAD
-=======
     if m_r_input == "0":
         return
     elif m_r_input == "1":
@@ -103,7 +96,6 @@ def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_
         m_r_json(cocktail_name, cocktail_ingredients_list, "test")
 
 
->>>>>>> 1be1f1b70981b198bc892433f3311e6df46b8c64
 
 def choose_ingredient():
     user_input = []
@@ -140,7 +132,7 @@ def ingredient_name(ingredient_list):
             tt = json.loads(data.text)
             #webbrowser.open(tt["url"])
             if tt is None:
-                print("No cocktails including that ingredient could be found") #sort out language used here for submission
+                print("No cocktails including that ingredient could be found")
             else:
                 #print("\nCocktail Name:")
                 #selector = 0
@@ -157,6 +149,7 @@ def ingredient_name(ingredient_list):
 
 def get_specific_ingredients(specific_cocktail, selector):
     #put below in separate function that only runs after all names output
+
     choice = input("Please choose the cocktail (by it's number): ")
     chosen_drink = specific_cocktail[int(choice)-1]
     cocktail_name(chosen_drink)
