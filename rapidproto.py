@@ -10,10 +10,10 @@ user_input = ""
 # SEARCH for a cocktail by it's name"""
 #use of global variables seen as bad coding practice
 #pass variables to functions instead
-        
+
 
 def cocktail_name(user_input):
-    
+
     """if user_input == "":
         user_input = input("Please enter the name of the cocktail: ")
     else:
@@ -29,16 +29,15 @@ def cocktail_name(user_input):
     # Handling incorrect inputs
     if tt["drinks"] is None:
         print()
-<<<<<<< Updated upstream
         print("Sorry, That cocktail doesn't exist in our database :-(. Please try searching for something else")
         print()
-        
+
     else:
         for i in (tt["drinks"]):
             print("______________________________________")
 
             print("\nCocktail Name:   " + str(i["strDrink"]), "\n")
-            
+
             # Printing the ingredients and their respective quantities.
             print("Ingredients:")
             print("- " + str(i["strMeasure1"]) +
@@ -48,14 +47,21 @@ def cocktail_name(user_input):
                 x+=1
                 print("- " + str(i["strMeasure"+str(x)]) + " of "+ str(i["strIngredient"+str(x)]))
 
-=======
+            print("\nThis is how you make it: ")
+            instructions = str(i["strInstructions"])
+            formatted = instructions.split(". ")
+            j = 1
+            for x in formatted:
+                print(str(j)+". "+(x))
+                j += 1
+            print("______________________________________")
+
     mr = input("Would you like to produce a machine readable output? If so, what type?")
     print("0 : No, I would not like a machine readable output")
     print("1 : RDFa")
     print("2 : HTML Microdata")
     #recipe name, author, date published, description, preptime, cooktime, ingredients, instructions
-    
->>>>>>> Stashed changes
+
 
 def choose_ingredient():
     user_input = []
@@ -63,7 +69,7 @@ def choose_ingredient():
     user_input.append(input("Please enter ingredient: \n"))
 
     user_input = vodka_cv(user_input[0])
-    
+
     user_input = whisky_cv(user_input[0])
 
     """if type(user_input) is list:
@@ -86,13 +92,13 @@ def ingredient_name(ingredient_list):
         specific_cocktail = []
         for ingredient in ingredient_list:
             #print(ingredient)
-            
+
             f = r"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+ingredient
             data = requests.get(f)
             tt = json.loads(data.text)
             #webbrowser.open(tt["url"])
             if tt is None:
-                print("sorry bro no can do") #sort out language used here for submission
+                print("No cocktails including that ingredient could be found") #sort out language used here for submission
             else:
                 #print("\nCocktail Name:")
                 #selector = 0
@@ -117,7 +123,7 @@ def get_specific_ingredients(specific_cocktail, selector):
 
 # Allows users to find a random cocktail (ID_RANGE: 1100 - )
 def surprise_me():
-    
+
     f = r"https://www.thecocktaildb.com/api/json/v1/1/random.php"
     data = requests.get(f)
     tt = json.loads(data.text)
