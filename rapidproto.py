@@ -29,6 +29,7 @@ def cocktail_name(user_input):
     # Handling incorrect inputs
     if tt["drinks"] is None:
         print()
+<<<<<<< Updated upstream
         print("Sorry, That cocktail doesn't exist in our database :-(. Please try searching for something else")
         print()
         
@@ -47,6 +48,14 @@ def cocktail_name(user_input):
                 x+=1
                 print("- " + str(i["strMeasure"+str(x)]) + " of "+ str(i["strIngredient"+str(x)]))
 
+=======
+    mr = input("Would you like to produce a machine readable output? If so, what type?")
+    print("0 : No, I would not like a machine readable output")
+    print("1 : RDFa")
+    print("2 : HTML Microdata")
+    #recipe name, author, date published, description, preptime, cooktime, ingredients, instructions
+    
+>>>>>>> Stashed changes
 
 def choose_ingredient():
     user_input = []
