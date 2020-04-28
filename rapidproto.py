@@ -3,6 +3,7 @@ import json
 import webbrowser
 from controlled_vocab import *
 from m_r_json import *
+from m_r_rdfa import *
 
 
 """# Global Definitions
@@ -43,8 +44,6 @@ def cocktail_name(user_input):
 
             # Printing the ingredients and their respective quantities.
             print("Ingredients:")
-            print("- " + str(i["strMeasure1"]) +
-                  " of " + str(i["strIngredient1"]))
             """x=1
             while((str(i["strIngredient"+str(x+1)]))!="None"):
                 x+=1
@@ -58,7 +57,7 @@ def cocktail_name(user_input):
                 ingredients_output_list.append(new_ingredient)
                 print(new_ingredient)
 
-                print("1")
+                #print("1")
                 x += 1
 
 
@@ -75,10 +74,10 @@ def cocktail_name(user_input):
                 
             print("______________________________________")
                 
-    machine_readable_outputs(cocktail_name_var, ingredients_output_list, instructions_list)
+    machine_readable_outputs(cocktail_name_var, ingredients_output_list, instructions_list, instructions)
 
 
-def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_instructions):
+def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_instructions, instructions_string):
     print("\nWould you like to produce a machine readable output?\nIf so, what type of output do you require?")
 
     print("\n0 : No, I would not like a machine readable output")
@@ -92,6 +91,7 @@ def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_
         return
     elif m_r_input == "1":
         #rdfa funtion call here
+        m_r_rdfa(cocktail_name, cocktail_ingredients_list, instructions_string)
         pass
     elif m_r_input == "2":
         #html funtion call here
