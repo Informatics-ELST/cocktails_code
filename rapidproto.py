@@ -44,11 +44,11 @@ def cocktail_name(user_input):
 
             # Printing the ingredients and their respective quantities.
             print("Ingredients:")
-            """x=1
-            while((str(i["strIngredient"+str(x+1)]))!="None"):
-                x+=1
-                print("- " + str(i["strMeasure"+str(x)]) + " of "+ str(i["strIngredient"+str(x)]))
-            """
+            #"""x=1
+            #while((str(i["strIngredient"+str(x+1)]))!="None"):
+            #    x+=1
+            #    print("- " + str(i["strMeasure"+str(x)]) + " of "+ str(i["strIngredient"+str(x)]))
+            #"""
             new_ingredient = ""
             ingredients_output_list = []
             x = 1
