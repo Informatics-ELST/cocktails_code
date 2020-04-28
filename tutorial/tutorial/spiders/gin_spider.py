@@ -1,10 +1,10 @@
-#https://en.wikipedia.org/wiki/List_of_vodkas
+#https://www.thewhiskyexchange.com/brands/spirits/338/gin
 
 import scrapy
 
 
 """class GinSpider(scrapy.Spider):
-    name = "gin"
+    name = "Gin"
 
     def start_requests(self):
             urls = [
@@ -15,22 +15,22 @@ import scrapy
 
     def parse(self, response):
             #page = response.url.split("/")[-2]
-            #filename = 'gin-%s.html' % page
-            filename = 'gin.html'
+            #filename = 'quotes-%s.html' % page
+            filename = 'Gin.html'
             with open(filename, 'wb') as f:
                 f.write(response.body)
             self.log('Saved file %s' % filename)"""
 
 class GinSpider(scrapy.Spider):
-    name = "gin"
+    name = "Gin"
     start_urls = [
-        'https://www.thewhiskyexchange.com/brands/spirits/338/gin',
+        'https://www.thewhiskyexchange.com/brands/spirits/338/gin'
     ]
 
-    #response.css('az-item-name a::text').getall()
+    #response.css('.az-item-name::text').getall()
     def parse(self, response):
-        for gin in response.css('az-item-name'):
+        for Gin in response.css('.az-item-name'):
             yield {
-                'gin_brand': gin.css('span.text::text').get(),
+                'Gin_brand': Gin.css('::text').get(),
 
             }
