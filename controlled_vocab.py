@@ -72,6 +72,30 @@ def gin_cv(user_ingredient):
         return ["gin"]
     else:
         return [user_ingredient]
+
+def rum_cv(user_ingredient):
+    with open('tutorial/rum.json', 'r') as myfile:
+        data=myfile.read()
+
+    myfile.close()
+
+    obj = json.loads(data)
+
+    #rum_list = [str(obj['rum brand'])]
+    #print (rum_list)
+    #print(obj)
+
+    rum_list = []
+    for pair in obj:
+        #print(pair["rum_brand"])
+        rum_list.append((pair["rum_brand"]).lower())
+
+    #print(rum_list)
+
+    if user_ingredient.lower() in rum_list:
+        return ["rum"]
+    else:
+        return [user_ingredient]
         
 
 
