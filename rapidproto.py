@@ -10,31 +10,33 @@ from m_r_rdfa import *
 user_input = ""
 
 # SEARCH for a cocktail by it's name"""
-#use of global variables seen as bad coding practice
-#pass variables to functions instead
+# use of global variables seen as bad coding practice
+# pass variables to functions instead
 
 
 def cocktail_name(user_input):
-
     """if user_input == "":
         user_input = input("Please enter the name of the cocktail: ")
     else:
         pass"""
-    #above code unnecessary if cocktail_name() is called on apropriate variables
+    # above code unnecessary if cocktail_name() is called on apropriate variables
 
     f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+user_input
 
     data = requests.get(f)
     tt = json.loads(data.text)
-    #webbrowser.open(tt[f])
+    # webbrowser.open(tt[f])
+    #print("this is tt drinks: " + str(tt["drinks"]))
+    #print("this is tt drinks length: " + str(len(tt["drinks"])))
 
     # Handling incorrect inputs
     if tt["drinks"] is None:
         print()
-        print("Sorry, That cocktail doesn't exist in our database :-(. Please try searching for something else")
+        print(
+            "Sorry, That cocktail doesn't exist in our database :-(. Please try searching for something else")
         print()
 
-    else:
+    elif(len(tt["drinks"]) == 1):
         for i in (tt["drinks"]):
             print("______________________________________")
 
@@ -44,24 +46,21 @@ def cocktail_name(user_input):
 
             # Printing the ingredients and their respective quantities.
             print("Ingredients:")
-            #"""x=1
-            #while((str(i["strIngredient"+str(x+1)]))!="None"):
-            #    x+=1
-            #    print("- " + str(i["strMeasure"+str(x)]) + " of "+ str(i["strIngredient"+str(x)]))
-            #"""
+
             new_ingredient = ""
             ingredients_output_list = []
-            x = 1
-            while((str(i["strIngredient"+str(x)]))!="None"):
-                new_ingredient = str(i["strMeasure"+str(x)]) + " of " + str(i["strIngredient"+str(x)])
-                ingredients_output_list.append(new_ingredient)
-                print(new_ingredient)
 
-                #print("1")
+
+            x = 1
+
+            while(str(i["strIngredient"+str(x)]) != "None"):
+                new_ingredient = str(i["strMeasure"+str(x)]) + \
+                    " of " + str(i["strIngredient"+str(x)])
+                ingredients_output_list.append(new_ingredient)
+                #print(new_ingredient)
                 x += 1
 
-
-            #code for instructions (copied from surprise me
+                # code for instructions (copied from surprise me
             print("\nThis is how you make it: ")
             instructions = str(i["strInstructions"])
             formatted = instructions.split(". ")
@@ -71,10 +70,60 @@ def cocktail_name(user_input):
                 instructions_list.append(str(j)+". "+(x))
                 print(str(j)+". "+(x))
                 j += 1
-                
+
+        print("______________________________________")
+    else:
+        selector = 0
+        specific_cocktail = []
+        for i in (tt["drinks"]):
+            selector = selector+1
             print("______________________________________")
-                
-    machine_readable_outputs(cocktail_name_var, ingredients_output_list, instructions_list, instructions)
+
+            cocktail_name_var = str(i["strDrink"])
+
+            print(str(selector) + ". " + "\nCocktail Name:   " +
+                  str(i["strDrink"]), "\n")
+            specific_cocktail.append(str(i["strDrink"]))
+            # Printing the ingredients and their respective quantities.
+            print("Ingredients:")
+            # """x=1
+            # while((str(i["strIngredient"+str(x+1)]))!="None"):
+            #    x+=1
+            #    print("- " + str(i["strMeasure"+str(x)]) + " of "+ str(i["strIngredient"+str(x)]))
+            # """
+            new_ingredient = ""
+            ingredients_output_list = []
+            x = 1
+            while((str(i["strIngredient"+str(x)])) != "None"):
+                new_ingredient = str(i["strMeasure"+str(x)]) + \
+                    " of " + str(i["strIngredient"+str(x)])
+                ingredients_output_list.append(new_ingredient)
+                print(new_ingredient)
+                x += 1
+
+                # code for instructions (copied from surprise me
+            print("\nThis is how you make it: ")
+            instructions = str(i["strInstructions"])
+            formatted = instructions.split(". ")
+            j = 1
+            instructions_list = []
+            for x in formatted:
+                instructions_list.append(str(j)+". "+(x))
+                print(str(j)+". "+(x))
+                j += 1
+
+            print("______________________________________")
+
+            #for i in (tt["drinks"]):
+            
+                #print(str(selector) + ". " + str(i["strDrink"]), "\n")
+            specific_cocktail.append(str(i["strDrink"]))
+            #selector = selector+1
+        get_specific_ingredients(specific_cocktail, selector)
+
+
+    machine_readable_outputs(
+        cocktail_name_var, ingredients_output_list, instructions_list, instructions)
 
 
 def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_instructions, instructions_string):
@@ -86,19 +135,19 @@ def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_
     print("3 : JSON LD")
 
     m_r_input = input()
-    
+
     if m_r_input == "0":
         return
     elif m_r_input == "1":
-        #rdfa funtion call here
+        # rdfa funtion call here
         m_r_rdfa(cocktail_name, cocktail_ingredients_list, instructions_string)
         pass
     elif m_r_input == "2":
-        #html funtion call here
+        # html funtion call here
         pass
     elif m_r_input == "3":
-        m_r_json(cocktail_name, cocktail_ingredients_list, cocktail_instructions)
-
+        m_r_json(cocktail_name, cocktail_ingredients_list,
+                 cocktail_instructions)
 
 
 def choose_ingredient():
@@ -111,7 +160,7 @@ def choose_ingredient():
     user_input = gin_cv(user_input[0])
 
     user_input = rum_cv(user_input[0])
-    
+
     user_input = whisky_cv(user_input[0])
 
     """if type(user_input) is list:
@@ -120,7 +169,7 @@ def choose_ingredient():
     else:
         ingredient_name(user_input)"""
 
-    #print(user_input)
+    # print(user_input)
     ingredient_name(user_input)
 
 
@@ -129,16 +178,16 @@ def choose_ingredient():
 def ingredient_name(ingredient_list):
 
     try:
-        #print(ingredient_list)
+        # print(ingredient_list)
         selector = 0
         specific_cocktail = []
         for ingredient in ingredient_list:
-            #print(ingredient)
+            # print(ingredient)
 
             f = r"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+ingredient
             data = requests.get(f)
             tt = json.loads(data.text)
-            #webbrowser.open(tt["url"])
+            # webbrowser.open(tt["url"])
             if tt is None:
                 print("No cocktails including that ingredient could be found")
             else:
@@ -146,22 +195,21 @@ def ingredient_name(ingredient_list):
                 #selector = 0
                 #specific_cocktail = []
                 for i in (tt["drinks"]):
-                    selector= selector+1
+                    selector = selector+1
                     print(str(selector) + ". " + str(i["strDrink"]), "\n")
                     specific_cocktail.append(str(i["strDrink"]))
         get_specific_ingredients(specific_cocktail, selector)
     except:
         print("\nNo cocktails with that ingredient could be found\n")
-        #better error messagecould be implemented
+        # better error messagecould be implemented
 
 
 def get_specific_ingredients(specific_cocktail, selector):
-    #put below in separate function that only runs after all names output
+    # put below in separate function that only runs after all names output
 
     choice = input("Please choose the cocktail (by it's number): ")
-    chosen_drink = specific_cocktail[int(choice)-1]
+    chosen_drink = specific_cocktail[int(choice)]
     cocktail_name(chosen_drink)
-
 
 
 # Allows users to find a random cocktail (ID_RANGE: 1100 - )

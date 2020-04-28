@@ -35,3 +35,12 @@ def m_r_rdfa(cocktail_name, cocktail_ingredients_list, cocktail_instructions):
         </div>
     """
     )
+
+    #with open('cocktail_m_r_json_output.txt', 'w') as file:
+    #    file.write('<script type="application/ld+json">')
+    #    json.dump(data, file)
+    #    file.write('</script>')
+
+    #file.close()
+
+    #print("\nWritten to JSON file!\n")
