@@ -110,6 +110,8 @@ def choose_ingredient():
 
     user_input = whisky_cv(user_input[0])
 
+    user_input = gin_cv(user_input[0])
+
     """if type(user_input) is list:
         for spirit in user_input:
             ingredient_name(spirit)

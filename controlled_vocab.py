@@ -39,6 +39,17 @@ def whisky_cv(user_ingredient):
     whisky_list = ["scotch", "whisky", "blended whisky", "single malt",
                    "whiskey", "blended whiskey", "irish whiskey"] #any more to add?
 
+    with open('tutorial/whisky.json', 'r') as myfile:
+        data=myfile.read()
+
+    myfile.close()
+
+    obj = json.loads(data)
+
+    for pair in obj:
+        #print(pair["vodka_brand"])
+        whisky_list.append((pair["whisky_brand"]).lower())
+
     if user_ingredient.lower() in whisky_list:
         """ingredientname("Scotch")
         ingredientname("Blended Whiskey")
@@ -64,7 +75,7 @@ def gin_cv(user_ingredient):
     gin_list = []
     for pair in obj:
         #print(pair["gin_brand"])
-        gin_list.append((pair["gin_brand"]).lower())
+        gin_list.append((pair["Gin_brand"]).lower())
 
     #print(gin_list)
 
