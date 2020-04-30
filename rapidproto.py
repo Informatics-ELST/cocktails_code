@@ -115,7 +115,7 @@ def cocktail_name(user_input):
             print("______________________________________")
 
             #for i in (tt["drinks"]):
-            
+
                 #print(str(selector) + ". " + str(i["strDrink"]), "\n")
             specific_cocktail.append(str(i["strDrink"]))
             #selector = selector+1
@@ -179,7 +179,7 @@ def ingredient_name(ingredient_list):
 
     try:
         # print(ingredient_list)
-        selector = 0
+        selector = -1
         specific_cocktail = []
         for ingredient in ingredient_list:
             # print(ingredient)
@@ -192,8 +192,7 @@ def ingredient_name(ingredient_list):
                 print("No cocktails including that ingredient could be found")
             else:
                 #print("\nCocktail Name:")
-                #selector = 0
-                #specific_cocktail = []
+                specific_cocktail = []
                 for i in (tt["drinks"]):
                     selector = selector+1
                     print(str(selector) + ". " + str(i["strDrink"]), "\n")
