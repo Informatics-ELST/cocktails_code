@@ -1,43 +1,31 @@
 import json
-#from vodka_spider import *
 import tutorial
-#from spiders import *
-from rapidproto import *
 
-
+#fucntion to implement vodka orientated controlled vocabulary
 def vodka_cv(user_ingredient):
-    with open('tutorial/vodka.json', 'r') as myfile:
-        data=myfile.read()
+    with open('tutorial/vodka.json', 'r') as myfile: #JSON file opened
+        data=myfile.read() #whole file read into variable
 
-    myfile.close()
+    myfile.close() #closing file to reduce unecessary use of memory (and avoid errors by ahving file remaining open)
 
-    obj = json.loads(data)
+    obj = json.loads(data) #uses loads() function to interpret JSON saved in variable
 
-    #vodka_list = [str(obj['vodka brand'])]
-    #print (vodka_list)
-    #print(obj)
+    vodka_list = [] #initalising list used to store controlled vocabulary terms
+    for pair in obj: #looping through each item in the JSON variable
+        vodka_list.append((pair["vodka_brand"]).lower()) #adds each brand saved in the JSON to the list
 
-    vodka_list = []
-    for pair in obj:
-        #print(pair["vodka_brand"])
-        vodka_list.append((pair["vodka_brand"]).lower())
-
-    #print(vodka_list)
-
-    if user_ingredient.lower() in vodka_list:
+    if user_ingredient.lower() in vodka_list: #checks to see if user input is part of the controlled vocabulary
         return ["vodka"]
     else:
         return [user_ingredient]
 
+#fucntion to implement vodka orientated controlled vocabulary
+#works in same way as vodka function, with added items
 def whisky_cv(user_ingredient):
 
-    #############################
-    #NEED TO ADD BRANDS!!!!!!!!!#
-    #############################
-    
-    #user_ingredient = user_ingredient.lower()
+    #initalising the vocabulary with various names used within the API
     whisky_list = ["scotch", "whisky", "blended whisky", "single malt",
-                   "whiskey", "blended whiskey", "irish whiskey"] #any more to add?
+                   "whiskey", "blended whiskey", "irish whiskey"]
 
     with open('tutorial/whisky.json', 'r') as myfile:
         data=myfile.read()
@@ -47,14 +35,9 @@ def whisky_cv(user_ingredient):
     obj = json.loads(data)
 
     for pair in obj:
-        #print(pair["vodka_brand"])
         whisky_list.append((pair["whisky_brand"]).lower())
 
     if user_ingredient.lower() in whisky_list:
-        """ingredientname("Scotch")
-        ingredientname("Blended Whiskey")
-        ingredientname("Whiskey")"""
-        #add all other whisky types from db to this list bellow
         return ["Scotch", "Blended whiskey", "Whiskey", "Irish whiskey"]
 
     else:
@@ -68,16 +51,9 @@ def gin_cv(user_ingredient):
 
     obj = json.loads(data)
 
-    #gin_list = [str(obj['gin brand'])]
-    #print (gin_list)
-    #print(obj)
-
     gin_list = []
     for pair in obj:
-        #print(pair["gin_brand"])
         gin_list.append((pair["Gin_brand"]).lower())
-
-    #print(gin_list)
 
     if user_ingredient.lower() in gin_list:
         return ["gin"]
@@ -92,16 +68,9 @@ def rum_cv(user_ingredient):
 
     obj = json.loads(data)
 
-    #rum_list = [str(obj['rum brand'])]
-    #print (rum_list)
-    #print(obj)
-
     rum_list = []
     for pair in obj:
-        #print(pair["rum_brand"])
         rum_list.append((pair["rum_brand"]).lower())
-
-    #print(rum_list)
 
     if user_ingredient.lower() in rum_list:
         return ["rum"]
