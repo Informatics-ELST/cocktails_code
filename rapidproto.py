@@ -55,7 +55,7 @@ def cocktail_name(user_input):
                 new_ingredient = str(i["strMeasure"+str(x)]) + \
                     " of " + str(i["strIngredient"+str(x)])
                 ingredients_output_list.append(new_ingredient)
-                #print(new_ingredient)
+                print(new_ingredient)
                 x += 1
 
                 # code for instructions (copied from surprise me
@@ -226,3 +226,4 @@ def surprise_me():
             print(str(j)+". "+(x))
             j += 1
         print("______________________________________")
+    
