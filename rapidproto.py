@@ -108,7 +108,7 @@ def cocktail_name(user_input):
                 j += 1
 
             print("______________________________________")
-            
+
         get_specific_ingredients(specific_cocktail, selector)
 
     machine_readable_outputs(cocktail_name_var, ingredients_output_list, instructions_list, instructions)
@@ -166,7 +166,7 @@ def choose_ingredient():
 def ingredient_name(ingredient_list):
 
     try:
-        # print(ingredient_list)
+        #print(ingredient_list)
         selector = -1
         specific_cocktail = []
         for ingredient in ingredient_list:
@@ -180,7 +180,7 @@ def ingredient_name(ingredient_list):
                 print("No cocktails including that ingredient could be found")
             else:
                 #print("\nCocktail Name:")
-                specific_cocktail = []
+                #specific_cocktail = []
                 for i in (tt["drinks"]):
                     selector = selector+1
                     print(str(selector) + ". " + str(i["strDrink"]), "\n")

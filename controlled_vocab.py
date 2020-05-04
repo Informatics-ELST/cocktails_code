@@ -38,7 +38,7 @@ def whisky_cv(user_ingredient):
         whisky_list.append((pair["whisky_brand"]).lower())
 
     if user_ingredient.lower() in whisky_list:
-        return ["Scotch", "Blended whiskey", "Whiskey", "Irish whiskey"]
+        return ["Scotch", "Blended whiskey", "Whiskey", "Irish whiskey", "Whisky"]
 
     else:
         return [user_ingredient]
