@@ -25,9 +25,7 @@ def cocktail_name(user_input):
 
     data = requests.get(f)
     tt = json.loads(data.text)
-    # webbrowser.open(tt[f])
-    #print("this is tt drinks: " + str(tt["drinks"]))
-    #print("this is tt drinks length: " + str(len(tt["drinks"])))
+
 
     # Handling incorrect inputs
     if tt["drinks"] is None:
@@ -73,24 +71,21 @@ def cocktail_name(user_input):
 
         print("______________________________________")
     else:
-        selector = 0
+        selector = -1
         specific_cocktail = []
         for i in (tt["drinks"]):
             selector = selector+1
+            #print("specific cocktails:", str(specific_cocktail))
             print("______________________________________")
 
             cocktail_name_var = str(i["strDrink"])
+            specific_cocktail.append(str(i["strDrink"]))
 
             print(str(selector) + ". " + "\nCocktail Name:   " +
                   str(i["strDrink"]), "\n")
-            specific_cocktail.append(str(i["strDrink"]))
             # Printing the ingredients and their respective quantities.
             print("Ingredients:")
-            # """x=1
-            # while((str(i["strIngredient"+str(x+1)]))!="None"):
-            #    x+=1
-            #    print("- " + str(i["strMeasure"+str(x)]) + " of "+ str(i["strIngredient"+str(x)]))
-            # """
+
             new_ingredient = ""
             ingredients_output_list = []
             x = 1
@@ -113,17 +108,10 @@ def cocktail_name(user_input):
                 j += 1
 
             print("______________________________________")
-
-            #for i in (tt["drinks"]):
-
-                #print(str(selector) + ". " + str(i["strDrink"]), "\n")
-            specific_cocktail.append(str(i["strDrink"]))
-            #selector = selector+1
+            
         get_specific_ingredients(specific_cocktail, selector)
 
-
-    machine_readable_outputs(
-        cocktail_name_var, ingredients_output_list, instructions_list, instructions)
+    machine_readable_outputs(cocktail_name_var, ingredients_output_list, instructions_list, instructions)
 
 
 def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_instructions, instructions_string):
