@@ -36,11 +36,21 @@ def m_r_rdfa(cocktail_name, cocktail_ingredients_list, cocktail_instructions):
     """
     )
 
-    #with open('cocktail_m_r_json_output.txt', 'w') as file:
-    #    file.write('<script type="application/ld+json">')
-    #    json.dump(data, file)
-    #    file.write('</script>')
+    with open('cocktail_m_r_rdfa_output.html', 'w') as file:
+        file.write('<div vocab="http://schema.org/" typeof="Recipe">\n')
+        file.write('  <span property="name">'+cocktail_name+'</span>\n')
+        file.write('  </div>\n')
+        file.write('  Ingredients:\n')
+        file.write(ingredients_string)
+        file.write('\n')
+        file.write('Instructions:\n')
+        file.write('   <span property="recipeInstructions">\n')
+        file.write(cocktail_instructions)
+        file.write('\n')
+        file.write('   </span>\n')
+        file.write('</div>')
+        #file.write('')
 
-    #file.close()
+    file.close()
 
-    #print("\nWritten to JSON file!\n")
+    print("\nWritten to HTML file as RDFa!\n\n")

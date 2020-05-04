@@ -31,11 +31,11 @@ def m_r_json(cocktail_name, cocktail_ingredients, cocktail_instructions):
         'instructions': str(instructions)
         })"""
 
-    with open('cocktail_m_r_json_output.txt', 'w') as file:
-        file.write('<script type="application/ld+json">')
+    with open('cocktail_m_r_json_output.json', 'w') as file:
+        file.write('<script type="application/ld+json">\n')
         json.dump(data, file)
-        file.write('</script>')
+        file.write('\n</script>')
 
     file.close()
 
-    print("\nWritten to JSON file!\n")
+    print("\nWritten to JSON file!\n\n")

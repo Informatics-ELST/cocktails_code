@@ -15,9 +15,9 @@ def dashboard():
         print("0 : Exit program")
 
 
-        selected = input("Enter your choice: ")
+        selected = input("\nEnter your choice: ")
         if(selected == "1"):
-            print("Please enter the name of the cocktail: ")
+            print("\nPlease enter the name of the cocktail: ")
             user_input = input()
             cocktail_name(user_input)
 
@@ -26,14 +26,14 @@ def dashboard():
             choose_ingredient()
 
         elif(selected == "3"):
-            print("We're selecting a random cocktail for you...")        
+            print("\nWe're selecting a random cocktail for you...")        
             surprise_me()
 
         elif selected == "0":
             return
 
         else:
-            (print("Incorrect submission"))
+            (print("\nIncorrect submission"))
 
 
 dashboard()

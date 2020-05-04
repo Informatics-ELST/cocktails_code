@@ -90,9 +90,10 @@ def cocktail_name(user_input):
             
 
             print("______________________________________")
-        choice = input("Please choose the cocktail (by it's number): ")
+        choice = input("\nPlease choose the cocktail (by it's number): ")
         cocktail_name_var = specific_cocktail[int(choice)]
 
+        print("______________________________________")
         print("\nCocktail Name: ", cocktail_name_var)
         print("\nIngredients:")
         x = 1
@@ -112,7 +113,7 @@ def cocktail_name(user_input):
             instructions_list.append(str(j)+". "+(x))
             print(str(j)+". "+(x))
             j += 1
-
+        print("______________________________________")
         #get_specific_ingredients(specific_cocktail, selector)
 
     machine_readable_outputs(cocktail_name_var, ingredients_output_list, instructions_list, instructions)
@@ -123,21 +124,17 @@ def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_
 
     print("\n0 : No, I would not like a machine readable output")
     print("1 : RDFa")
-    print("2 : HTML Microdata")
-    print("3 : JSON LD")
+    print("2 : JSON LD")
 
     m_r_input = input()
 
     if m_r_input == "0":
+        print('\n')
         return
     elif m_r_input == "1":
         # rdfa funtion call here
         m_r_rdfa(cocktail_name, cocktail_ingredients_list, instructions_string)
-        pass
     elif m_r_input == "2":
-        # html funtion call here
-        pass
-    elif m_r_input == "3":
         m_r_json(cocktail_name, cocktail_ingredients_list,
                  cocktail_instructions)
 
@@ -145,7 +142,8 @@ def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_
 def choose_ingredient():
     user_input = []
     #print("Please enter ingredient: \n")
-    user_input.append(input("Please enter ingredient: \n"))
+    user_input.append(input("\nPlease enter ingredient: \n"))
+    print()
 
     user_input = vodka_cv(user_input[0])
 
@@ -191,7 +189,7 @@ def ingredient_name(ingredient_list):
                     specific_cocktail.append(str(i["strDrink"]))
         get_specific_ingredients(specific_cocktail, selector)
     except:
-        print("\nNo cocktails with that ingredient could be found\n")
+        print("\nNo cocktails with that ingredient could be found\n\n")
         # better error messagecould be implemented
 
 
@@ -229,5 +227,5 @@ def surprise_me():
         for x in formatted:
             print(str(j)+". "+(x))
             j += 1
-        print("______________________________________")
+        print("______________________________________\n\n")
     
