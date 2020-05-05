@@ -129,7 +129,7 @@ def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_
     m_r_input = input()
 
     if m_r_input == "0":
-        print('\n')
+        print("______________________________________\n")
         return
     elif m_r_input == "1":
         # rdfa funtion call here
@@ -137,6 +137,8 @@ def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_
     elif m_r_input == "2":
         m_r_json(cocktail_name, cocktail_ingredients_list,
                  cocktail_instructions)
+    print("______________________________________")
+    
 
 
 def choose_ingredient():
@@ -209,23 +211,28 @@ def surprise_me():
     tt = json.loads(data.text)
     for i in (tt["drinks"]):
         print("______________________________________")
-
-        print("\nWe have selected:   " + str(i["strDrink"]), "\n")
+        cocktail_name_var = str(i["strDrink"])
+        print("\nWe have selected:   " + cocktail_name_var, "\n")
         print("Here's the ingredients:")
-        print("- " + str(i["strMeasure1"]) +
-              " of " + str(i["strIngredient1"]))
+        new_ingredient = ""
+        ingredients_output_list = []
         x = 1
-        while((str(i["strIngredient"+str(x+1)])) != "None"):
-            x += 1
-            print("- " + str(i["strMeasure"+str(x)]) +
-                  " of " + str(i["strIngredient"+str(x)]))
+        while((str(i["strIngredient"+str(x)]))!="None"):
+            x+=1
+            new_ingredient = "- " + str(i["strMeasure"+str(x)]) + " of " + str(i["strIngredient"+str(x)])
+            ingredients_output_list.append(new_ingredient)
+            print(new_ingredient)
         # Instructions
-        print("\nThis is how you make it: ")
+        print("\nThis is how you make it: \n")
         instructions = str(i["strInstructions"])
         formatted = instructions.split(". ")
         j = 1
+        instructions_list = []
         for x in formatted:
+            instructions_list.append(str(j)+". "+(x))
             print(str(j)+". "+(x))
             j += 1
-        print("______________________________________\n\n")
+        print("______________________________________")
+
+    machine_readable_outputs(cocktail_name_var, ingredients_output_list, instructions_list, instructions)
     
