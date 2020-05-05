@@ -26,6 +26,7 @@ def cocktail_name(user_input):
     data = requests.get(f)
     tt = json.loads(data.text)
 
+    cocktail_found = 1
 
     # Handling incorrect inputs
     if tt["drinks"] is None:
@@ -33,6 +34,7 @@ def cocktail_name(user_input):
         print(
             "Sorry, That cocktail doesn't exist in our database :-(. Please try searching for something else")
         print()
+        cocktail_found = 0
 
     elif(len(tt["drinks"]) == 1):
         for i in (tt["drinks"]):
@@ -116,7 +118,8 @@ def cocktail_name(user_input):
         print("______________________________________")
         #get_specific_ingredients(specific_cocktail, selector)
 
-    machine_readable_outputs(cocktail_name_var, ingredients_output_list, instructions_list, instructions)
+    if (cocktail_found == 1):
+        machine_readable_outputs(cocktail_name_var, ingredients_output_list, instructions_list, instructions)
 
 
 def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_instructions, instructions_string):
