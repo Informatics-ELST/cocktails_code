@@ -1,25 +1,21 @@
-import requests
-import json
-import webbrowser
-from controlled_vocab import *
-from m_r_json import *
-from m_r_rdfa import *
+import requests                 # Requests are made to retrieve data from the API
+import json                     # API feeds JSON files
+import webbrowser               # Allows the code to interface with the API
+from controlled_vocab import *  # Imports all of the controlled vocabulary functions
+from m_r_json import *          # Machine Readable output - JSON
+from m_r_rdfa import *          # Machine Readable ouptut - RDFa
 
 
-"""# Global Definitions
-user_input = ""
-
-# SEARCH for a cocktail by it's name"""
+# SEARCH for a cocktail by it's name
 # use of global variables seen as bad coding practice
 # pass variables to functions instead
-
 
 def cocktail_name(user_input):
     """if user_input == "":
         user_input = input("Please enter the name of the cocktail: ")
     else:
         pass"""
-    # above code unnecessary if cocktail_name() is called on apropriate variables
+    # above code unnecessary if cocktail_name() is called on appropriate variables
 
     f = r"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+user_input
 
@@ -36,6 +32,7 @@ def cocktail_name(user_input):
         print()
         cocktail_found = 0
 
+    # If there is only one result, the full details of the cocktail is printed
     elif(len(tt["drinks"]) == 1):
         for i in (tt["drinks"]):
             print("______________________________________")
@@ -72,6 +69,10 @@ def cocktail_name(user_input):
                 j += 1
 
         print("______________________________________")
+
+    # If there are multiple outputs, a list of the results is printed instead.
+    # This makes it easier for the user to see the output if there are lots of results.
+    # We then index each result so that the user can select which they would like to get more information about.
     else:
         selector = -1
         specific_cocktail = []
@@ -83,15 +84,17 @@ def cocktail_name(user_input):
             cocktail_name_var = str(i["strDrink"])
             specific_cocktail.append(str(i["strDrink"]))
 
+            # Selector assigns an index to each result
             print(str(selector) + ". " +
                   str(i["strDrink"]))
-            # Printing the ingredients and their respective quantities.
 
             new_ingredient = ""
             ingredients_output_list = []
             
 
             print("______________________________________")
+
+        # Prompts the user to select one of the results
         choice = input("\nPlease choose the cocktail (by it's number): ")
         cocktail_name_var = specific_cocktail[int(choice)]
 
@@ -105,7 +108,7 @@ def cocktail_name(user_input):
             print(new_ingredient)
             x += 1
 
-            # code for instructions (copied from surprise me
+        # Code for instructions (similar from surprise me)
         print("\nThis is how you make it: ")
         instructions = str(i["strInstructions"])
         formatted = instructions.split(". ")
@@ -116,12 +119,12 @@ def cocktail_name(user_input):
             print(str(j)+". "+(x))
             j += 1
         print("______________________________________")
-        #get_specific_ingredients(specific_cocktail, selector)
 
     if (cocktail_found == 1):
         machine_readable_outputs(cocktail_name_var, ingredients_output_list, instructions_list, instructions)
 
 
+# This function directs the program to the relevant functions, depending on which machine readable output they would like.
 def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_instructions, instructions_string):
     print("\nWould you like to produce a machine readable output?\nIf so, what type of output do you require?")
 
@@ -135,27 +138,33 @@ def machine_readable_outputs(cocktail_name, cocktail_ingredients_list, cocktail_
         print("______________________________________\n")
         return
     elif m_r_input == "1":
-        # rdfa funtion call here
+        # RDFa function called:
         m_r_rdfa(cocktail_name, cocktail_ingredients_list, instructions_string)
     elif m_r_input == "2":
+        # JSON function called:
         m_r_json(cocktail_name, cocktail_ingredients_list,
                  cocktail_instructions)
     print("______________________________________")
     
 
-
+# Prompts the user for the ingredient they would like to select.
+# This allows us to run a controlled vocabulary before the ingredient function.
 def choose_ingredient():
     user_input = []
     #print("Please enter ingredient: \n")
     user_input.append(input("\nPlease enter ingredient: \n"))
     print()
 
+    # Controlled Vocabulary: Vodka
     user_input = vodka_cv(user_input[0])
 
+    # Controlled Vocabulary: Gin
     user_input = gin_cv(user_input[0])
 
+    # Controlled Vocabulary: Rum
     user_input = rum_cv(user_input[0])
 
+    # Controlled Vocabulary: Whisky
     user_input = whisky_cv(user_input[0])
 
     """if type(user_input) is list:
@@ -198,6 +207,7 @@ def ingredient_name(ingredient_list):
         # better error messagecould be implemented
 
 
+# When there are multiple outputs, this allows the user to select the result by its index
 def get_specific_ingredients(specific_cocktail, selector):
     # put below in separate function that only runs after all names output
 
@@ -206,16 +216,18 @@ def get_specific_ingredients(specific_cocktail, selector):
     cocktail_name(chosen_drink)
 
 
-# Allows users to find a random cocktail (ID_RANGE: 1100 - )
+# This allows users to find a random cocktail if they have no preference
 def surprise_me():
-
+    # API Call
     f = r"https://www.thecocktaildb.com/api/json/v1/1/random.php"
     data = requests.get(f)
     tt = json.loads(data.text)
+    # Prints all of the result details
     for i in (tt["drinks"]):
         print("______________________________________")
         cocktail_name_var = str(i["strDrink"])
         print("\nWe have selected:   " + cocktail_name_var, "\n")
+        # Ingredients & Quantities
         print("Here's the ingredients:")
         new_ingredient = ""
         ingredients_output_list = []
@@ -236,6 +248,7 @@ def surprise_me():
             print(str(j)+". "+(x))
             j += 1
         print("______________________________________")
-
+    
+    # Calls the Machine Readable output function
     machine_readable_outputs(cocktail_name_var, ingredients_output_list, instructions_list, instructions)
     
