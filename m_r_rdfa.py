@@ -39,7 +39,6 @@ def m_r_rdfa(cocktail_name, cocktail_ingredients_list, cocktail_instructions):
     with open('cocktail_m_r_rdfa_output.html', 'w') as file:
         file.write('<div vocab="http://schema.org/" typeof="Recipe">\n')
         file.write('  <span property="name">'+cocktail_name+'</span>\n')
-        file.write('  </div>\n')
         file.write('  Ingredients:\n')
         file.write(ingredients_string)
         file.write('\n')
