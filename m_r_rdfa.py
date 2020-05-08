@@ -48,7 +48,6 @@ def m_r_rdfa(cocktail_name, cocktail_ingredients_list, cocktail_instructions):
         file.write('\n')
         file.write('   </span>\n')
         file.write('</div>')
-        #file.write('')
 
     file.close()
 
