@@ -4,7 +4,6 @@ def m_r_rdfa(cocktail_name, cocktail_ingredients_list, cocktail_instructions):
     ingredients_string = ""
     x = 0
     while x < len(cocktail_ingredients_list):
-        #if(x == 0):
         new_string = '- <span property = "recipeIngredient">'+cocktail_ingredients_list[x]+'</span>\n\t'
         ingredients_string = ingredients_string+new_string
         x = x+1
